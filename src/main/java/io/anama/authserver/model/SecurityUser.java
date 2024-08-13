@@ -1,4 +1,4 @@
-package io.anama.authserver.model;
+package io.anama.authserver.Model;
 
 import java.util.Collection;
 
@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import io.anama.authserver.entities.User;
+import io.anama.authserver.Entity.User;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

@@ -1,32 +1,30 @@
-package io.anama.authserver.entities;
-
-import java.util.List;
+package io.anama.authserver.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "client_token_settings")
 @Getter
 @Setter
-public class User {
+public class ClientTokenSetting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
-    public String userName;
-    public String password;
+    @Column(name = "access_token_ttl")
+    private int accessTokenTTL;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    public List<Authority> authorities;
+    private String type;
 
+    @OneToOne
+    private Client client;
 }

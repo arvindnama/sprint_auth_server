@@ -1,4 +1,4 @@
-package io.anama.authserver.services;
+package io.anama.authserver.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import io.anama.authserver.Repositories.ClientRepository;
-import io.anama.authserver.entities.Client;
+import io.anama.authserver.Entity.Client;
+import io.anama.authserver.Repository.ClientRepository;
 
 @Service
 @Transactional(readOnly = true)

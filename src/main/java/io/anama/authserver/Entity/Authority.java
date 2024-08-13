@@ -1,4 +1,4 @@
-package io.anama.authserver.entities;
+package io.anama.authserver.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

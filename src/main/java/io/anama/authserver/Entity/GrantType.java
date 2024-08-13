@@ -1,4 +1,4 @@
-package io.anama.authserver.entities;
+package io.anama.authserver.Entity;
 
 import java.util.List;
 import java.util.Set;

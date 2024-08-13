@@ -1,12 +1,13 @@
-package io.anama.authserver.services;
+package io.anama.authserver.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import io.anama.authserver.Repositories.UserRepository;
-import io.anama.authserver.model.SecurityUser;
+
+import io.anama.authserver.Model.SecurityUser;
+import io.anama.authserver.Repository.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
