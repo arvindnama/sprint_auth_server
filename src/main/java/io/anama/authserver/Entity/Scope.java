@@ -29,11 +29,11 @@ public class Scope {
     private Client client;
 
     public static Scope from(String scope, Client client) {
-        Scope redirectUrl = new Scope();
+        Scope s = new Scope();
 
-        redirectUrl.setScope(scope);
-        redirectUrl.setClient(client);
-        return redirectUrl;
+        s.setScope(scope);
+        s.setClient(client);
+        return s;
     }
 
     public static Consumer<Set<String>> scopes(List<Scope> scopes) {
