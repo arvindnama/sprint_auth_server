@@ -1,6 +1,9 @@
 package io.anama.authserver.entities;
 
-import jakarta.annotation.Generated;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,5 +34,13 @@ public class Scope {
         redirectUrl.setScope(scope);
         redirectUrl.setClient(client);
         return redirectUrl;
+    }
+
+    public static Consumer<Set<String>> scopes(List<Scope> scopes) {
+        return s -> {
+            for (Scope x : scopes) {
+                s.add(x.getScope());
+            }
+        };
     }
 }

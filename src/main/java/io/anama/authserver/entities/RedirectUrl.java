@@ -1,5 +1,9 @@
 package io.anama.authserver.entities;
 
+import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,5 +34,13 @@ public class RedirectUrl {
         redirectUrl.setUrl(url);
         redirectUrl.setClient(client);
         return redirectUrl;
+    }
+
+    public static Consumer<Set<String>> redirectUris(List<RedirectUrl> uris) {
+        return r -> {
+            for (RedirectUrl u : uris) {
+                r.add(u.getUrl());
+            }
+        };
     }
 }

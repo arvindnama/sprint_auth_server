@@ -1,5 +1,8 @@
 package io.anama.authserver.entities;
 
+import java.util.List;
+import java.util.Set;
+import java.util.function.Consumer;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 
 import jakarta.persistence.Entity;
@@ -40,4 +43,14 @@ public class AuthenticationMethod {
         method.setClient(client);
         return method;
     }
+
+    public static Consumer<Set<ClientAuthenticationMethod>> clientAuthenticationMethods(
+            List<AuthenticationMethod> authenticationMethods) {
+        return m -> {
+            for (AuthenticationMethod a : authenticationMethods) {
+                m.add(new ClientAuthenticationMethod(a.getAuthentication()));
+            }
+        };
+    }
+
 }

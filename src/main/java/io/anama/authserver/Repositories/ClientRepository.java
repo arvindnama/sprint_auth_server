@@ -10,7 +10,7 @@ import io.anama.authserver.entities.Client;
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     @Query("""
-            SELECT c From Client c WHERE c.client_id = :clientId
+            SELECT c From Client c WHERE c.clientId = :clientId
             """)
     Optional<Client> findByClientId(String clientId);
 

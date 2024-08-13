@@ -84,10 +84,11 @@ public class Client {
         return RegisteredClient.withId(String.valueOf(client.getId()))
                 .clientId(client.getClientId())
                 .clientSecret(client.getClientSecret())
-                .clientAuthenticationMethods(clientAuthenticationMethods(client.getAuthenticationMethods()))
-                .authorizationGrantTypes(authorizationGrantTypes(client.getGrantTypes()))
-                .scopes(scopes(client.getScopes()))
-                .redirectUris(redirectUris(client.getRedirectUrls()))
+                .clientAuthenticationMethods(
+                        AuthenticationMethod.clientAuthenticationMethods(client.getAuthenticationMethods()))
+                .authorizationGrantTypes(GrantType.authorizationGrantTypes(client.getGrantTypes()))
+                .scopes(Scope.scopes(client.getScopes()))
+                .redirectUris(RedirectUrl.redirectUris(client.getRedirectUrls()))
                 .tokenSettings(TokenSettings.builder()
                         .accessTokenTimeToLive(Duration.ofHours(client.clientTokenSettings.getAccessTokenTTL()))
                         .accessTokenFormat(new OAuth2TokenFormat(client.clientTokenSettings.getType()))
@@ -95,36 +96,4 @@ public class Client {
                 .build();
     }
 
-    private static Consumer<Set<AuthorizationGrantType>> authorizationGrantTypes(List<GrantType> grantTypes) {
-        return s -> {
-            for (GrantType g : grantTypes) {
-                s.add(new AuthorizationGrantType(g.getGrantType()));
-            }
-        };
-    }
-
-    private static Consumer<Set<ClientAuthenticationMethod>> clientAuthenticationMethods(
-            List<AuthenticationMethod> authenticationMethods) {
-        return m -> {
-            for (AuthenticationMethod a : authenticationMethods) {
-                m.add(new ClientAuthenticationMethod(a.getAuthentication()));
-            }
-        };
-    }
-
-    private static Consumer<Set<String>> scopes(List<Scope> scopes) {
-        return s -> {
-            for (Scope x : scopes) {
-                s.add(x.getScope());
-            }
-        };
-    }
-
-    private static Consumer<Set<String>> redirectUris(List<RedirectUrl> uris) {
-        return r -> {
-            for (RedirectUrl u : uris) {
-                r.add(u.getUrl());
-            }
-        };
-    }
 }
