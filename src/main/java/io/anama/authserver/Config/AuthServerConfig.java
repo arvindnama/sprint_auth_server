@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration
-public class ProjectConfig {
+public class AuthServerConfig {
 
     @Bean
     @Order(1)
@@ -49,13 +49,7 @@ public class ProjectConfig {
          * It is possible to customize
          */
         http.formLogin(Customizer.withDefaults());
-        /**
-         * Define routes / requests that need to be authorized
-         * We can whitelist if needed.
-         *
-         * Default is to authenticate all requests.
-         */
-        http.authorizeHttpRequests(c -> c.anyRequest().authenticated());
+
         return http.build();
     }
 

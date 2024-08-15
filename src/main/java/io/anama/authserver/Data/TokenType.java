@@ -1,7 +1,12 @@
 package io.anama.authserver.Data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public enum TokenType {
+    @JsonProperty("self-contained")
     SELF_CONTAINED("self-contained"),
+
+    @JsonProperty("reference")
     REFERENCE("reference"),
     ;
 

@@ -2,6 +2,8 @@ package io.anama.authserver.Data;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.anama.authserver.Entity.ClientTokenSetting;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,19 +37,26 @@ public class Client {
         clientEntity.setClientSecret(getClientSecret());
         clientEntity
                 .setAuthenticationMethods(
-                        getAuthenticationMethods().stream().map(AuthenticationMethod::toEntity).toList());
+                        getAuthenticationMethods()
+                                .stream()
+                                .map(m -> AuthenticationMethod.toEntity(m, clientEntity))
+                                .toList());
         clientEntity
                 .setGrantTypes(
-                        getGrantTypes().stream().map(GrantType::toEntity).toList());
+                        getGrantTypes()
+                                .stream()
+                                .map(g -> GrantType.toEntity(g, clientEntity))
+                                .toList());
 
         clientEntity
                 .setScopes(
-                        getScopes().stream().map(Scope::toEntity).toList());
+                        getScopes().stream().map(s -> Scope.toEntity(s, clientEntity)).toList());
         clientEntity
                 .setRedirectUrls(
                         getRedirectUrls().stream().map(url -> {
                             var rr = new io.anama.authserver.Entity.RedirectUrl();
                             rr.setUrl(url);
+                            rr.setClient(clientEntity);
                             return rr;
                         }).toList());
 

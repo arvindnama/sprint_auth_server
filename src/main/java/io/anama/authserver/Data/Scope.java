@@ -1,7 +1,14 @@
 package io.anama.authserver.Data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.anama.authserver.Entity.Client;
+
 public enum Scope {
-    OPEN_ID("openId"),
+    @JsonProperty("openid")
+    OPEN_ID("openid"),
+
+    @JsonProperty("profile")
     PROFILE("profile"),
     ;
 
@@ -17,9 +24,11 @@ public enum Scope {
     }
 
     public static io.anama.authserver.Entity.Scope toEntity(
-            Scope scope) {
+            Scope scope,
+            Client clientEntity) {
         var scopeEntity = new io.anama.authserver.Entity.Scope();
         scopeEntity.setScope(scope.toString());
+        scopeEntity.setClient(clientEntity);
         return scopeEntity;
 
     }

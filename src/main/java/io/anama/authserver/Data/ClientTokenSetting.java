@@ -1,5 +1,6 @@
 package io.anama.authserver.Data;
 
+import io.anama.authserver.Entity.Client;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,11 @@ public class ClientTokenSetting {
 
     private TokenType type;
 
-    public io.anama.authserver.Entity.ClientTokenSetting toEntity() {
+    public io.anama.authserver.Entity.ClientTokenSetting toEntity(Client clientEntity) {
         var ct = new io.anama.authserver.Entity.ClientTokenSetting();
         ct.setAccessTokenTTL(getAccessTokenTTL());
         ct.setType(getType().toString());
+        ct.setClient(clientEntity);
         return ct;
 
     }
